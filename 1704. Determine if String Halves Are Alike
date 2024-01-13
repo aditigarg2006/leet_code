@@ -1,0 +1,25 @@
+https://leetcode.com/problems/determine-if-string-halves-are-alike/
+
+
+class Solution(object):
+    def halvesAreAlike(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        v=['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+        a,b=0,0
+        i=0
+        j=len(s)//2
+        print(i,j)
+        while (j<len(s)):
+            if (s[i] in v):
+                a=a+1
+                print(a)
+            if (s[j] in v):
+                b=b+1
+                print(b)
+            i=i+1
+            j=j+1
+        return(a==b)
+        
