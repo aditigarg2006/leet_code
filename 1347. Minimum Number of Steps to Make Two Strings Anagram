@@ -1,0 +1,29 @@
+https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/description/
+
+
+
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        c=0
+        a={}
+        b={}
+        for i in s:
+            if i in a:
+                a[i]+=1
+            else:
+                a[i]=1
+        for i in t:
+            if i in b:
+                b[i]+=1
+            else:
+                b[i]=1
+        for i in b:
+            if i in a:
+                if a[i]>b[i]:
+                    c+=a[i]-b[i]
+                del a[i]
+        for i in a:
+            c+=a[i]
+        return c
+
+        
