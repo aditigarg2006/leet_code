@@ -1,0 +1,25 @@
+https://leetcode.com/problems/find-players-with-zero-or-one-losses/description/
+
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        winner,looser={},{}
+        for i in matches:
+            if i[0] in winner:
+                winner[i[0]]+=1
+            else:
+                winner[i[0]]=1
+            if i[1] in looser:
+                looser[i[1]]+=1
+            else:
+                looser[i[1]]=1
+        ans1,ans2=[],[]
+        for i in winner:
+            if i not in looser:
+                ans1.append(i)
+        ans1.sort()
+        for i in looser:
+            if looser[i]==1:
+                ans2.append(i)
+        ans2.sort()
+        return [ans1,ans2]
+        
