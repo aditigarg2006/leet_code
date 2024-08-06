@@ -1,0 +1,15 @@
+class Solution:
+    def minimumPushes(self, word: str) -> int:
+        dic={}
+        for i in word:
+            if i in dic:
+                dic[i]+=1
+            else:
+                dic[i]=1
+        val= list(dic.values())
+        sum=0
+        val.sort(reverse=True)
+        for i in range(len(val)):
+            sum=sum+(val[i]*(i//8+1))
+        return sum
+        
