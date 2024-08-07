@@ -1,0 +1,45 @@
+class Solution:
+    def numberToWords(self, nums: int) -> str:
+        self.i=0
+        def numtoword(num):
+            word=[]
+            ones = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"]     
+            teens = ["Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"]     
+            tens = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"]
+            placeName=["","Thousand","Million","Billion"]
+            if num>=100:
+                hundred=num//100
+                word.append(ones[hundred]+" "+"Hundred")
+                num=num%100
+                if self.i>0 and num==0:
+                    word.append(placeName[self.i])
+            if num>=20:
+                ten=num//10
+                one=num%10
+                word.append(tens[ten])
+                if one>0:
+                    word.append(ones[one])
+                if self.i>0:
+                    word.append(placeName[self.i])
+            elif num>=10:
+                word.append(teens[num-10])
+                if self.i>0:
+                    word.append(placeName[self.i])
+            elif num>0:
+                word.append(ones[num])
+                if self.i>0:
+                    word.append(placeName[self.i])
+            return word
+        if nums==0:
+            return "Zero"
+        word=[]
+        while nums:
+            num=nums%1000
+            w=numtoword(num)
+            word=w+word
+            nums=nums//1000
+            self.i+=1
+        return " ".join(word)
+
+
+
