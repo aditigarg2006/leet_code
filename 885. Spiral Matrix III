@@ -1,0 +1,26 @@
+class Solution:
+    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
+        step=2
+        arr=[]
+        move=1
+        next_move=2
+        diri,dirj=0,1
+        i,j=rStart,cStart
+        while len(arr)<(rows*cols):
+            if ((0<=i<rows) and (0<=j<cols)):
+                arr.append([i,j])
+            i+=diri
+            j+=dirj
+            move-=1
+            if move==0:
+                diri,dirj=dirj,-diri
+                step-=1
+                if step==0:
+                    step=2
+                    move=next_move
+                    next_move+=1
+                else:
+                    move=next_move-1
+        return arr
+
+
