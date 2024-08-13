@@ -1,0 +1,17 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.ans=[]
+        def decide(ind,cand,target,lst):
+            if ind == len(cand):
+                if target==0:
+                    self.ans.append(lst.copy())
+                return
+            if cand[ind]<=target:
+                lst.append(cand[ind])
+                decide(ind,cand,target-cand[ind],lst)
+                lst.pop()
+            decide(ind+1,cand,target,lst)
+        
+        decide(0,candidates,target,[])
+        return self.ans
+        
