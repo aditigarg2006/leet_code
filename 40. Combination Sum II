@@ -1,0 +1,20 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.ans=[]
+        def decide(ind,cand,target,lst):
+            if target==0:
+                self.ans.append(lst.copy())
+                return
+            for i in range(ind,len(cand)):
+                print(ind, i)
+                if ((i>ind) and (cand[i]==cand[i-1])):
+                    continue
+                if cand[i]>target:
+                    break
+                lst.append(cand[i])
+                decide(i+1,cand,target-cand[i],lst)
+                lst.pop()
+        candidates.sort()
+        decide(0,candidates,target,[])
+        return self.ans
+        
